@@ -8,7 +8,7 @@ Force Mobile Orientation[]
 
 Remove Touch Controls On Desktop[]
 
-Remove Antialiasing, Smoothing and Subpixel Rendering[]
-->Subpixel Rendering Disabled[]
-->Antialiasing Disabled in Game Creation[]
+Remove Antialiasing, Smoothing and Subpixel Rendering[2/3]
+->Subpixel Rendering Disabled[X]
+->Antialiasing Disabled in Game Creation[X]
 ->Disable Smoothing[]

@@ -1,8 +1,8 @@
 window.onload = function () {
-    var game, platforms, player, cursors, playerDirection, playerFacing,
+    var game,fpsDisplay, platforms, player, cursors, playerDirection, playerFacing,
         buttonJump, buttonLeft, buttonRight, playerJump, playerLeft, playerRight;
     //W,H,CANVAS WEBGL OR AUTO, ID OF DOM ELEMENT TO APPEND TO
-    game = new Phaser.Game(960, 540, Phaser.AUTO, 'game-area', { preload: preload, create: create, update: update });
+    game = new Phaser.Game(960, 540, Phaser.AUTO, 'game-area', { preload: preload, create: create, update: update },false,false);
 
     function preload() {
         game.load.image('grass', 'assets/grass.png');
@@ -11,10 +11,19 @@ window.onload = function () {
         game.load.image('background', 'assets/background.png');
         
         game.load.spritesheet('buttonSheet', 'assets/buttonSheet.png', 128, 64);
+        
+        game.scale.minWidth = 960;
+        game.scale.minHeight = 540;
+        game.scale.maxWidth = 960;
+        game.scale.maxHeight = 540;
+        game.scale.scaleMode = Phaser.ScaleManager.NO_SCALE;
+        game.renderer.renderSession.roundPixels = true;//Prevent rendering half pixels
+        //Updates game.time.fps
+        game.time.advancedTiming = true;
     }
 
     function create() {
-    
+        
         game.physics.startSystem(Phaser.Physics.ARCADE);
         cursors = game.input.keyboard.createCursorKeys();
     
@@ -33,12 +42,10 @@ window.onload = function () {
             grassTiles.push(platforms.create(i, game.world.height - 64, 'grass'));
             grassTiles[grassTiles.length - 1].body.immovable = true;
         }
-        
         player = game.add.sprite(128, game.world.height - 112, 'player');
         player.anchor.setTo(0.5, 0);
         playerFacing = 1;
         game.physics.arcade.enable(player);
-        //player.body.bounce.y = 0.2;
         player.body.gravity.y = 1200;
         player.body.collideWorldBounds = true;
         
@@ -66,10 +73,11 @@ window.onload = function () {
         buttonRight.events.onInputUp.add(function(){playerRight = false;});
         buttonRight.alpha = 0.2;
         
-        
+        fpsDisplay = game.add.text(64,64,"Fps:" + game.time.fps);
     }
 
     function update() {
+        fpsDisplay.text = "FPS:" + game.time.fps;
         
         //  Collide the player with the platforms
         game.physics.arcade.collide(player, platforms);
