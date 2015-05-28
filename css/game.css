@@ -2,9 +2,3 @@ body {
     margin: 0;
     background-color: black;
 }
-
-#game-area {
-    width: 960px;
-    height: 540px;
-    margin: auto;
-}
