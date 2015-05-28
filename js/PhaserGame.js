@@ -1,8 +1,8 @@
 window.onload = function () {
-    var game,fpsDisplay, platforms, player, cursors, playerDirection, playerFacing,
+    var game, fpsDisplay, platforms, player, cursors, playerDirection, playerFacing,
         buttonJump, buttonLeft, buttonRight, playerJump, playerLeft, playerRight;
     //W,H,CANVAS WEBGL OR AUTO, ID OF DOM ELEMENT TO APPEND TO
-    game = new Phaser.Game(960, 540, Phaser.AUTO, 'game-area', { preload: preload, create: create, update: update },false,false);
+    game = new Phaser.Game(960, 540, Phaser.AUTO, 'game-area', { preload: preload, create: create, update: update }, false, false);
 
     function preload() {
         game.load.image('grass', 'assets/grass.png');
@@ -51,29 +51,29 @@ window.onload = function () {
         
         buttonJump = game.add.button(800, 400, 'buttonSheet', null, this, 1, 0, 1, 0);
         buttonJump.fixedToCamera = true;
-        buttonJump.events.onInputOver.add(function(){playerJump = true;});
-        buttonJump.events.onInputOut.add(function(){playerJump = false;});
-        buttonJump.events.onInputDown.add(function(){playerJump = true;});
-        buttonJump.events.onInputUp.add(function(){playerJump = false;});
+        buttonJump.events.onInputOver.add(function () {playerJump = true; });
+        buttonJump.events.onInputOut.add(function () {playerJump = false; });
+        buttonJump.events.onInputDown.add(function () {playerJump = true; });
+        buttonJump.events.onInputUp.add(function () {playerJump = false; });
         buttonJump.alpha = 0.2;
         
         buttonLeft = game.add.button(32, 400, 'buttonSheet', null, this, 1, 0, 1, 0);
         buttonLeft.fixedToCamera = true;
-        buttonLeft.events.onInputOver.add(function(){playerLeft = true;});
-        buttonLeft.events.onInputOut.add(function(){playerLeft = false;});
-        buttonLeft.events.onInputDown.add(function(){playerLeft = true;});
-        buttonLeft.events.onInputUp.add(function(){playerLeft = false;});
+        buttonLeft.events.onInputOver.add(function () {playerLeft = true; });
+        buttonLeft.events.onInputOut.add(function () {playerLeft = false; });
+        buttonLeft.events.onInputDown.add(function () {playerLeft = true; });
+        buttonLeft.events.onInputUp.add(function () {playerLeft = false; });
         buttonLeft.alpha = 0.2;
         
         buttonRight = game.add.button(160, 400, 'buttonSheet', null, this, 1, 0, 1, 0);
         buttonRight.fixedToCamera = true;
-        buttonRight.events.onInputOver.add(function(){playerRight = true;});
-        buttonRight.events.onInputOut.add(function(){playerRight = false;});
-        buttonRight.events.onInputDown.add(function(){playerRight = true;});
-        buttonRight.events.onInputUp.add(function(){playerRight = false;});
+        buttonRight.events.onInputOver.add(function () {playerRight = true; });
+        buttonRight.events.onInputOut.add(function () {playerRight = false; });
+        buttonRight.events.onInputDown.add(function () {playerRight = true; });
+        buttonRight.events.onInputUp.add(function () {playerRight = false; });
         buttonRight.alpha = 0.2;
         
-        fpsDisplay = game.add.text(64,64,"Fps:" + game.time.fps);
+        fpsDisplay = game.add.text(64, 64, "Fps:" + game.time.fps);
     }
 
     function update() {
