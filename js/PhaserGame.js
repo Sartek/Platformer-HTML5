@@ -1,12 +1,32 @@
 window.onload = function () {
-    var game, w, h, scale, fpsDisplay, background, platforms, player, cursors, playerDirection, playerFacing,
+    var game, w, h, scale, fpsDisplay, Debugger, DEBUG,
+        background, platforms, player, cursors, playerDirection, playerFacing,
         buttonJump, buttonLeft, buttonRight, playerJump, playerLeft, playerRight;
+    
+    DEBUG = false;
+    if (DEBUG) {
+        Debugger = function () { };
+        Debugger.log = function (message) {
+            try {
+                console.log(message);
+            } catch (exception) {
+                return;
+            }
+        };
+    }
     
     w = 960;
     h = 540;
     scale = 1;
-    if (window.outerWidth >= (w * 2) * window.devicePixelRatio && window.outerHeight >= (h * 2)  * window.devicePixelRatio) {
+    if (window.innerWidth >=  w * 2 && window.innerHeight >= h * 2) {
         scale = 2;
+    }
+    
+    if (DEBUG) {
+        Debugger.log("innerWidth:" + window.innerWidth + "innerHeight:" + window.innerHeight);
+        Debugger.log("outerWidth:" + window.outerWidth + "outerHeight:" + window.outerHeight);
+        Debugger.log("devicePixelRatio:" + window.devicePixelRatio);
+        Debugger.log("scale:" + scale);
     }
     
     //W,H,CANVAS WEBGL OR AUTO, ID OF DOM ELEMENT TO APPEND TO
@@ -31,7 +51,6 @@ window.onload = function () {
     }
 
     function create() {
-        
         game.physics.startSystem(Phaser.Physics.ARCADE);
         cursors = game.input.keyboard.createCursorKeys();
     
@@ -94,15 +113,17 @@ window.onload = function () {
         buttonRight.alpha = 0.2;
         buttonRight.scale.x = scale;
         buttonRight.scale.y = scale;
-        
-        fpsDisplay = game.add.text(64 * scale, 64 * scale, "Fps:" + game.time.fps);
-        fpsDisplay.scale.x = scale;
-        fpsDisplay.scale.y = scale;
+        if (DEBUG) {
+            fpsDisplay = game.add.text(64 * scale, 64 * scale, "Fps:" + game.time.fps);
+            fpsDisplay.scale.x = scale;
+            fpsDisplay.scale.y = scale;
+        }
     }
 
     function update() {
-        fpsDisplay.text = "FPS:" + game.time.fps;
-        
+        if (DEBUG) {
+            fpsDisplay.text = "FPS:" + game.time.fps;
+        }
         //  Collide the player with the platforms
         game.physics.arcade.collide(player, platforms);
         
