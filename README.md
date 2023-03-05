@@ -10,4 +10,4 @@ Based on a work at https://github.com/Sartek/Platformer-HTML5.
 
 Further permissions may be obtained by contacting Sartek
 
-Created and Copyright © Sartek 2015 Some Right Reserved
+Created and Copyright © Sartek 2015-2023 Some Right Reserved
